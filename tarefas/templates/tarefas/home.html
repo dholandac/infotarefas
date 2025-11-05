@@ -24,11 +24,12 @@
 
             {% for task in tasks %}
                 <li class="{% if task.done == True %}completed{% endif %}">
-                    <form method="POST">
+                    <form method="POST" action="{% url 'toggle' task.id %}">
+                        {% csrf_token %}
                         <input type="checkbox" onChange="this.form.submit()" {% if task.done == True %}checked{% endif %}/>
                     </form>
                     <span>{{ task.label }}</span>
-                    <a href="" class="delete">×</a>
+                    <a href="{% url 'delete' task.id %}" class="delete">×</a>
                 </li>
             {% endfor %}
         </ul>
