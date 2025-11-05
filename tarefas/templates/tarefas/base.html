@@ -8,12 +8,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title> {% block title %} {% endblock %} - InFo-Tarefas</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+        <script>
+            document.addEventListener('mousemove', (e) => {
+                const x = (e.clientX / window.innerWidth) * 100;
+                const y = (e.clientY / window.innerHeight) * 100;
+                document.documentElement.style.setProperty('--mouse-x', x + '%');
+                document.documentElement.style.setProperty('--mouse-y', y + '%');
+                document.body.style.setProperty('--mouse-x', x + '%');
+                document.body.style.setProperty('--mouse-y', y + '%');
+            });
+        </script>
     </head>
 
     <body>
         <div class="container">
             <h1 class="title">~/<span class="highlight">InFo-Tarefas</span></h1>
-            <p class="date">a sua lista de tarefas dev</p>
+            <p class="date">A sua lista de tarefas dev</p>
 
 
             {% block body %} 

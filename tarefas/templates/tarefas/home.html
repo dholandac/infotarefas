@@ -13,8 +13,9 @@
         <div class="progress-count">{{ completed }}/{{ total }}</div>
     </div>
 
-    <form class="task-form" method="POST">
-        <input name="label" type="text" placeholder="$ adicionar nova tarefa..." required autofocus />
+    <form class="task-form" method="POST" method="POST" action="{% url 'add' %}">
+        {% csrf_token %}
+        <input name="label" type="text" placeholder="Adicionar nova tarefa..." required autofocus />
         <button type="submit">ADD</button>
     </form>
 
