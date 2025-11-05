@@ -23,11 +23,11 @@
         <ul class="task-list">
 
             {% for task in tasks %}
-                <li class="completed">
+                <li class="{% if task.done == True %}completed{% endif %}">
                     <form method="POST">
-                        <input type="checkbox" onChange="this.form.submit()" checked />
+                        <input type="checkbox" onChange="this.form.submit()" {% if task.done == True %}checked{% endif %}/>
                     </form>
-                    <span>Assistir 30 minutos de aulas</span>
+                    <span>{{ task.label }}</span>
                     <a href="" class="delete">×</a>
                 </li>
             {% endfor %}

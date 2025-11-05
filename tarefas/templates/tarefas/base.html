@@ -8,6 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title> {% block title %} {% endblock %} - InFo-Tarefas</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <script>
             document.addEventListener('mousemove', (e) => {
@@ -18,10 +19,35 @@
                 document.body.style.setProperty('--mouse-x', x + '%');
                 document.body.style.setProperty('--mouse-y', y + '%');
             });
+
+            $(document).ready(function(){
+                generateBinary();
+                setInterval('updateBinary()', 5);
+            });
+
+            function generateBinary(){
+                const chars = Math.ceil((window.innerWidth * window.innerHeight) / 15);
+                str = "";
+                for ( var i = 0; i < chars; i++ ) {
+                    str = str + Math.round(Math.random());
+                }
+                $(".bin").html(str);
+                $(".bin").attr("data-text", str);
+            }
+
+            function updateBinary() {
+                str = $(".bin").html();
+                n = str.length;
+                r = Math.floor(Math.random() * n + 1)
+                newStr = str.substring(0, r) + Math.round(Math.random()) + str.substring(r + 1);
+                $(".bin").html(newStr);
+                $(".bin").attr("data-text", newStr);
+            }
         </script>
     </head>
 
     <body>
+        <p class="bin"></p>
         <div class="container">
             <h1 class="title">~/<span class="highlight">InFo-Tarefas</span></h1>
             <p class="date">A sua lista de tarefas dev</p>
